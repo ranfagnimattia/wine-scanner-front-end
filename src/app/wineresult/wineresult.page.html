@@ -1,0 +1,110 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button ion-button (click)="dismiss()"><ion-icon name="close-outline"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button ion-button (click)="info()"><ion-icon name="help-circle-outline"></ion-icon></ion-button>
+      <ng-container *ngIf="favourite; else saved">
+        <ion-button ion-button (click)="addFavourite(data.year,data)"><ion-icon name="bookmark-outline"></ion-icon></ion-button>
+      </ng-container>
+      <ng-template #saved>
+        <ion-icon name="bookmark"></ion-icon>
+      </ng-template>
+    </ion-buttons>
+    <ion-title>Risultati</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ng-container>
+    <ion-card>
+      <div class="row" style="max-width:300px; max-height: 300px;">
+        <div class="col s1"></div>
+        <img class="responsive-img col s10"  src="{{data.img}}"/>
+        <div class="col s1"></div>
+      </div>
+      <!--<ion-img [src]=[data.img]></ion-img>-->
+      <ion-card-header>
+        <ion-card-subtitle>
+          <div *ngIf="data.quality==0">
+            <ion-icon color="primary" name="star-outline" ></ion-icon>
+            <ion-icon color="primary" name="star-outline" ></ion-icon>
+            <ion-icon color="primary" name="star-outline" ></ion-icon>
+            <ion-icon color="primary" name="star-outline" ></ion-icon>
+            <ion-icon color="primary" name="star-outline" ></ion-icon>
+          </div>
+          <div *ngIf="data.quality==1">
+            <ion-icon color="primary" name="star" ></ion-icon>
+            <ion-icon color="primary" name="star-outline" ></ion-icon>
+            <ion-icon color="primary" name="star-outline" ></ion-icon>
+            <ion-icon color="primary" name="star-outline" ></ion-icon>
+            <ion-icon color="primary" name="star-outline" ></ion-icon>
+          </div>
+          <div *ngIf="data.quality==2">
+            <ion-icon color="primary" name="star" ></ion-icon>
+            <ion-icon color="primary" name="star" ></ion-icon>
+            <ion-icon color="primary" name="star-outline" ></ion-icon>
+            <ion-icon color="primary" name="star-outline" ></ion-icon>
+            <ion-icon color="primary" name="star-outline" ></ion-icon>
+          </div>
+        
+          <div *ngIf="data.quality==3">
+            <ion-icon color="primary" name="star" ></ion-icon>
+            <ion-icon color="primary" name="star" ></ion-icon>
+            <ion-icon color="primary" name="star" ></ion-icon>
+            <ion-icon color="primary" name="star-outline" ></ion-icon>
+            <ion-icon color="primary" name="star-outline" ></ion-icon>
+          </div>
+          <div *ngIf="data.quality==4">
+            <ion-icon color="primary" name="star" ></ion-icon>
+            <ion-icon color="primary" name="star" ></ion-icon>
+            <ion-icon color="primary" name="star" ></ion-icon>
+            <ion-icon color="primary" name="star" ></ion-icon>
+            <ion-icon color="primary" name="star-outline" ></ion-icon>
+          </div>
+          <div *ngIf="data.quality==5">
+            <ion-icon color="primary" name="star" ></ion-icon>
+            <ion-icon color="primary" name="star" ></ion-icon>
+            <ion-icon color="primary" name="star" ></ion-icon>
+            <ion-icon color="primary" name="star" ></ion-icon>
+            <ion-icon color="primary" name="star" ></ion-icon>
+          </div>
+        </ion-card-subtitle>
+        <ion-card-title>{{data.name}}</ion-card-title>
+        <ion-card-subtitle>{{data.year}}</ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <ion-list>
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="../../assets/img/humidity.svg">
+            </ion-avatar>
+            <ion-label>
+              <h4>Umidit&agrave; media tra Aprile e Ottobre</h4>
+              <h3>{{data.umidaprott}} %</h3>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="../../assets/img/humidity.svg">
+            </ion-avatar>
+            <ion-label>
+              <h4>Umidit&agrave; media tra Luglio e Ottobre</h4>
+              <h3>{{data.umidlugott}} %</h3>
+            </ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-avatar slot="start">
+              <img src="../../assets/img/fan.svg">
+            </ion-avatar>
+            <ion-label>
+              <h4>Velocit&agrave; media del vento tra Aprile e Ottobre</h4>
+              <h3>{{data.ventoaprott}} m/s</h3>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </ng-container>
+

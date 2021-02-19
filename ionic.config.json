@@ -1,0 +1,8 @@
+{
+  "name": "arrQRViniIonic",
+  "integrations": {
+    "cordova": {},
+    "capacitor": {}
+  },
+  "type": "angular"
+}

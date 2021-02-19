@@ -1,0 +1,159 @@
+<ion-header>
+  <nav class="red darken-4">
+    <div class="nav-wrapper">
+      <a href="#" class="brand-logo center">Preferiti</a>
+    </div>
+  </nav>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-refresher slot="fixed" pullFactor="0.5" pullMin="100" pullMax="200" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title>Qui troverai i tuoi vini preferiti.</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      Scannerizza i QR Code dei tuoi vini e aggiungili tra i preferiti. Potrai rivedere le informazioni relative ad essi senza aver bisogno di effettuare nuovamente la scansione.
+    </ion-card-content>
+  </ion-card>
+  <ng-container *ngIf="data_list.length == 0">
+    <ion-list>
+      <ion-list-header>
+        <ion-title>
+          In attesa di una scansione...
+        </ion-title>
+      </ion-list-header>
+      <ion-item>
+        <ion-avatar slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-avatar>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-skeleton-text animated style="width: 27px; height: 27px" slot="start"></ion-skeleton-text>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+      <ion-item>
+        <ion-thumbnail slot="start">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-thumbnail>
+        <ion-label>
+          <h3>
+            <ion-skeleton-text animated style="width: 50%"></ion-skeleton-text>
+          </h3>
+          <p>
+            <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+          </p>
+          <p>
+            <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+          </p>
+        </ion-label>
+      </ion-item>
+    </ion-list>
+  </ng-container>
+
+  <ng-container *ngIf="data_list.length != 0">
+    <ion-list>  
+      <ion-item-sliding *ngFor="let data of data_list" (ionSwipe)="remove(data.year)">
+        <ion-item>
+          <ion-avatar slot="start">
+            <img src="{{data.img}}">
+          </ion-avatar>
+          <ion-buttons slot="end">
+            <ion-button ion-button fill="outline" (click)="show(data.year)" color="danger" size="large" ><ion-icon name="information-circle-outline"></ion-icon></ion-button>
+          </ion-buttons>
+          <ion-label>
+            <h2>{{data.name}}</h2>
+            <h3>{{data.year}}</h3>
+            <p>
+              <ng-container *ngIf="data.quality==0">
+                <ion-icon color="primary" name="star-outline" ></ion-icon>
+                <ion-icon color="primary" name="star-outline" ></ion-icon>
+                <ion-icon color="primary" name="star-outline" ></ion-icon>
+                <ion-icon color="primary" name="star-outline" ></ion-icon>
+                <ion-icon color="primary" name="star-outline" ></ion-icon>
+              </ng-container>
+              <ng-container *ngIf="data.quality==1">
+                <ion-icon color="primary" name="star" ></ion-icon>
+                <ion-icon color="primary" name="star-outline" ></ion-icon>
+                <ion-icon color="primary" name="star-outline" ></ion-icon>
+                <ion-icon color="primary" name="star-outline" ></ion-icon>
+                <ion-icon color="primary" name="star-outline" ></ion-icon>
+              </ng-container>
+              <ng-container *ngIf="data.quality==2">
+                <ion-icon color="primary" name="star" ></ion-icon>
+                <ion-icon color="primary" name="star" ></ion-icon>
+                <ion-icon color="primary" name="star-outline" ></ion-icon>
+                <ion-icon color="primary" name="star-outline" ></ion-icon>
+                <ion-icon color="primary" name="star-outline" ></ion-icon>
+              </ng-container>
+            
+              <ng-container *ngIf="data.quality==3">
+                <ion-icon color="primary" name="star" ></ion-icon>
+                <ion-icon color="primary" name="star" ></ion-icon>
+                <ion-icon color="primary" name="star" ></ion-icon>
+                <ion-icon color="primary" name="star-outline" ></ion-icon>
+                <ion-icon color="primary" name="star-outline" ></ion-icon>
+              </ng-container>
+              <ng-container *ngIf="data.quality==4">
+                <ion-icon color="primary" name="star" ></ion-icon>
+                <ion-icon color="primary" name="star" ></ion-icon>
+                <ion-icon color="primary" name="star" ></ion-icon>
+                <ion-icon color="primary" name="star" ></ion-icon>
+                <ion-icon color="primary" name="star-outline" ></ion-icon>
+              </ng-container>
+              <ng-container *ngIf="data.quality==5">
+                <ion-icon color="primary" name="star" ></ion-icon>
+                <ion-icon color="primary" name="star" ></ion-icon>
+                <ion-icon color="primary" name="star" ></ion-icon>
+                <ion-icon color="primary" name="star" ></ion-icon>
+                <ion-icon color="primary" name="star" ></ion-icon>
+              </ng-container>
+            </p>
+          </ion-label>
+        </ion-item>
+       
+        <ion-item-options>
+           <button ion-button expandable (click)="remove(data.year)" color="danger">Rimuovi</button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </ng-container>  
+</ion-content>

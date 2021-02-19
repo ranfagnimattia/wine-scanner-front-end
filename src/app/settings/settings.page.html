@@ -1,0 +1,12 @@
+<nav class="red darken-4">
+  <div class="nav-wrapper">
+    <a href="#" class="brand-logo center">Impostazioni</a>
+  </div>
+</nav>
+
+<ion-content>
+  <ion-item>
+    <ion-label>Toggle Dark Mode</ion-label>
+    <ion-toggle [(ngModel)]="dark" (ionChange)="updateDarkMode()" slot="end"></ion-toggle>
+  </ion-item>
+</ion-content>
